@@ -8,14 +8,12 @@ type SignUpModalProps = {
   isOpen: boolean;
   onRequestClose: () => void;
   modalStep: 1 | 2;
-  handleModalStep: () => void;
 };
 
 export default function SignUpModal({
   isOpen,
   onRequestClose,
   modalStep,
-  handleModalStep,
 }: SignUpModalProps) {
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
