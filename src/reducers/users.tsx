@@ -26,12 +26,14 @@ export const userSlice = createSlice({
       action: PayloadAction<PayloadToken>
     ) => {
       state.value.token = action.payload.token;
+      console.log("state value token is:", state.value.token);
     },
     addUsernameToStore: (
       state: UserState,
       action: PayloadAction<PayloadUsername>
     ) => {
       state.value.username = action.payload.username;
+      console.log("state value username is:", state.value.username);
     },
     resetDefaultStore: (state: UserState) => {
       state.value.token = null;

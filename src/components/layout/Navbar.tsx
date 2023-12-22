@@ -4,6 +4,7 @@ import SignUpModal from "../section/SignUpModal";
 import { useState } from "react";
 import { resetDefaultStore } from "@/reducers/users";
 import { useDispatch } from "react-redux";
+import SignInModal from "../section/SignInModal";
 
 type NavbarProps = {
   isConnected: boolean;
@@ -12,23 +13,43 @@ type NavbarProps = {
 
 export default function Navbar({ isConnected, username }: NavbarProps) {
   const dispatch = useDispatch();
-  const [modalState, setModalState] = useState<boolean>(false);
-  const [modalStep, setModalStep] = useState<1 | 2>(1);
+  const [signUpModalState, setSignUpModalState] = useState<boolean>(false);
+  const [signUpmodalStep, setSignUpModalStep] = useState<1 | 2>(1);
 
-  const handleModalOpen = () => {
-    setModalState(true);
+  const handleSignUpModalOpen = () => {
+    setSignUpModalState(true);
   };
 
-  const handleModalClose = () => {
-    setModalState(false);
-    setModalStep(1);
+  const handleSignUpModalClose = () => {
+    setSignUpModalState(false);
+    setSignUpModalStep(1);
   };
 
-  const handleModalStep = () => {
-    if (modalStep === 1) {
-      setModalStep(2);
-    } else if (modalStep === 2) {
-      setModalStep(1);
+  const handleSignUpModalStep = () => {
+    if (signUpmodalStep === 1) {
+      setSignUpModalStep(2);
+    } else if (signUpmodalStep === 2) {
+      setSignUpModalStep(1);
+    }
+  };
+
+  const [signInModalState, setSignInModalState] = useState<boolean>(false);
+  const [signInModalStep, setSignInModalStep] = useState<1 | 2>(1);
+
+  const handleSignInModalOpen = () => {
+    setSignInModalState(true);
+  };
+
+  const handleSignInModalClose = () => {
+    setSignInModalState(false);
+    setSignInModalStep(1);
+  };
+
+  const handleSignInModalStep = () => {
+    if (signInModalStep === 1) {
+      setSignInModalStep(2);
+    } else if (signInModalStep === 2) {
+      setSignInModalStep(1);
     }
   };
 
@@ -45,15 +66,21 @@ export default function Navbar({ isConnected, username }: NavbarProps) {
         <div className="flex gap-6 items-center">
           <Navlink label="Our Story" />
           <Navlink label="Bookmarks" />
-          <Navlink label="Sign in" />
+          <Navlink label="Sign in" onClick={handleSignInModalOpen} />
           <div className="inline-block">
-            <Button onClick={handleModalOpen} label="Get Started" />
+            <Button onClick={handleSignUpModalOpen} label="Get Started" />
           </div>
           <SignUpModal
-            isOpen={modalState}
-            onRequestClose={handleModalClose}
-            modalStep={modalStep}
-            handleModalStep={handleModalStep}
+            isOpen={signUpModalState}
+            onRequestClose={handleSignUpModalClose}
+            modalStep={signUpmodalStep}
+            handleModalStep={handleSignUpModalStep}
+          />
+          <SignInModal
+            isOpen={signInModalState}
+            onRequestClose={handleSignInModalClose}
+            modalStep={signInModalStep}
+            handleModalStep={handleSignInModalStep}
           />
         </div>
       </div>
@@ -69,10 +96,10 @@ export default function Navbar({ isConnected, username }: NavbarProps) {
         <Navlink label="Bookmarks" />
         <Navlink label="Logout" onClick={handleLogout} />
         <SignUpModal
-          isOpen={modalState}
-          onRequestClose={handleModalClose}
-          modalStep={modalStep}
-          handleModalStep={handleModalStep}
+          isOpen={signUpModalState}
+          onRequestClose={handleSignUpModalClose}
+          modalStep={signUpmodalStep}
+          handleModalStep={handleSignUpModalStep}
         />
       </div>
     </div>

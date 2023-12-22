@@ -8,12 +8,14 @@ type SignUpModalProps = {
   isOpen: boolean;
   onRequestClose: () => void;
   modalStep: 1 | 2;
+  handleModalStep: () => void;
 };
 
 export default function SignUpModal({
   isOpen,
   onRequestClose,
   modalStep,
+  handleModalStep,
 }: SignUpModalProps) {
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -33,6 +35,7 @@ export default function SignUpModal({
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log("data is:", data);
         dispatch(addTokenToStore({ token: data.token }));
         dispatch(addUsernameToStore({ username: username }));
       });
