@@ -4,32 +4,30 @@ import Button from "../commons/Button";
 import { useDispatch } from "react-redux";
 import { addTokenToStore, addUsernameToStore } from "@/reducers/users";
 
-type SignUpModalProps = {
+type SignInModalProps = {
   isOpen: boolean;
   onRequestClose: () => void;
   modalStep: 1 | 2;
   handleModalStep: () => void;
 };
 
-export default function SignUpModal({
+export default function SignInModal({
   isOpen,
   onRequestClose,
   modalStep,
   handleModalStep,
-}: SignUpModalProps) {
+}: SignInModalProps) {
   const [username, setUsername] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const dispatch = useDispatch();
 
-  const requestSignUp = () => {
-    fetch("http://localhost:3000/users/signUp", {
+  const requestSignIn = () => {
+    fetch("http://localhost:3000/users/signIn", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: username,
-        email: email,
         password: password,
       }),
     })
@@ -42,12 +40,11 @@ export default function SignUpModal({
 
   const clearInputs = () => {
     setUsername("");
-    setEmail("");
     setPassword("");
   };
 
   const handleSubmit = () => {
-    requestSignUp();
+    requestSignIn();
     clearInputs();
     onRequestClose();
   };
@@ -88,11 +85,8 @@ export default function SignUpModal({
       >
         <div className="bg-white flex flex-col justify-center items-center h-full gap-16 ">
           <div className="flex flex-col justify-center items-center gap-4">
-            <div className="text-2xl font-semibold">Sign up with username</div>
-            <div>
-              Enter a username and email that will be associated with your
-              account.
-            </div>
+            <div className="text-2xl font-semibold">Sign in</div>
+            <div>Enter the username associated with your account.</div>
           </div>
           <div className="flex flex-col gap-12">
             <div className="flex flex-col justify-center items-center w-full ">
@@ -101,14 +95,6 @@ export default function SignUpModal({
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="border-b border-black focus:outline-none w-64"
-              />
-            </div>
-            <div className="flex flex-col justify-center items-center w-full">
-              <div>Your email</div>
-              <input
-                value={email}
-                className="border-b border-black focus:outline-none  w-64"
-                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
           </div>
@@ -121,10 +107,8 @@ export default function SignUpModal({
       <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={modalStyle}>
         <div className="bg-white flex flex-col justify-center items-center h-full gap-16 ">
           <div className="flex flex-col justify-center items-center gap-4">
-            <div className="text-2xl font-semibold">Create password</div>
-            <div>
-              Create a password that will be associated with your account.
-            </div>
+            <div className="text-2xl font-semibold">Enter your password</div>
+            <div>Enter the password associated with your account.</div>
           </div>
           <div className="flex flex-col justify-center items-center w-full ">
             <div>Your password</div>

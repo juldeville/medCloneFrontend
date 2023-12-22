@@ -5,7 +5,7 @@ type NavlinkProps = {
 
 export default function Navlink({ label, onClick }: NavlinkProps) {
   return (
-    <div onClick={onClick} className="text-xs font-bold">
+    <div onClick={onClick} className="text-xs font-bold cursor-pointer">
       {label}
     </div>
   );
