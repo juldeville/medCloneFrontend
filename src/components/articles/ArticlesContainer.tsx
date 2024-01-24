@@ -49,7 +49,7 @@ export default function ArticlesContainer() {
   });
 
   return (
-    <div className="px-72 py-6">
+    <div className="px-72 py-6 flex flex-col gap-20">
       <div className="flex flex-wrap gap-6">{topArticles}</div>
       <div className="flex flex-col gap-6">{articles}</div>
     </div>

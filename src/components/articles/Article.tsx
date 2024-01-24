@@ -18,6 +18,12 @@ export default function Article({
   date,
   image,
 }: ArticleProps) {
+  const formatedDate = new Date(`${date}`)
+    .toDateString()
+    .split(" ")
+    .slice(1)
+    .join(" ");
+
   return (
     <div className="flex flex-col gap-3 w-3/4">
       <div className="flex justify-between items-center  w-8/12">
@@ -31,7 +37,7 @@ export default function Article({
         <div className="flex flex-col justify-between  w-8/12">
           <div className="text-xl font-bold">{title}</div>
           <div>{description}</div>
-          <div>{date}</div>
+          <div>{formatedDate}</div>
         </div>
         <img src={image} className="w-72" />
       </div>
