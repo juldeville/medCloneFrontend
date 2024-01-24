@@ -1,6 +1,6 @@
-import Articles from "@/components/articles/Articles";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/section/Hero";
+import ArticlesContainer from "@/components/articles/ArticlesContainer";
 import { useSelector } from "react-redux";
 import { UserState } from "@/reducers/users";
 import { useEffect, useState } from "react";
@@ -21,7 +21,7 @@ export default function Home() {
     <div>
       <Navbar isConnected={isConnected} username={user.username} />
       <Hero />
-      <Articles />
+      <ArticlesContainer />
     </div>
   );
 }
