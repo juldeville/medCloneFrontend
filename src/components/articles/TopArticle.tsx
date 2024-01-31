@@ -20,6 +20,9 @@ export default function TopArticle({
     .slice(1)
     .join(" ");
 
+  const randomNumber = Math.floor(Math.random() * 50) + 1;
+  const avatarImage = `https://i.pravatar.cc/150?img=${randomNumber}`;
+
   let formatedTitle = title;
   if (title.length > 67) {
     formatedTitle = title.substring(0, 67) + "...";
@@ -27,11 +30,11 @@ export default function TopArticle({
   return (
     <div className="flex flex-col w-1/4 gap-3">
       <div className="flex items-center gap-3">
-        <img src="/avatar.png" className="w-12" />
+        <img src={avatarImage} className="w-12 rounded-full" />
         <div className="text-sm font-semibold">{author}</div>
       </div>
       <div className="text-lg font-bold">{formatedTitle}</div>
-      <div>{formatedDate}</div>
+      <div className="text-xs text-gray-600 font-semibold">{formatedDate}</div>
     </div>
   );
 }

@@ -3,10 +3,12 @@ import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import user from "@/reducers/users";
+import bookmark from "@/reducers/bookmarks";
 
 const store = configureStore({
   reducer: {
     user,
+    bookmark,
   },
 });
 
